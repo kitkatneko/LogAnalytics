@@ -1,0 +1,4 @@
+search in (AzureDiagnostics) ResourceType == "APPLICATIONGATEWAYS" 
+| sort by TimeGenerated desc
+| where Category == "ApplicationGatewayFirewallLog" 
+| summarize count() by ruleId_s, action_s, hostname_s, requestUri_s , Message, details_message_s
