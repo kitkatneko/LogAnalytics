@@ -1,0 +1,6 @@
+AzureDiagnostics
+| where ResourceType == "APPLICATIONGATEWAYS"
+| where Category == "ApplicationGatewayFirewallLog"
+| where action_s == "Blocked" or action_s == "Allowed"
+| summarize count() by ruleId_s, action_s, hostname_s, requestUri_s , Message, details_message_s
+//| project TimeGenerated, clientIp_s, ruleId_s , Message , hostname_s , requestUri_s
