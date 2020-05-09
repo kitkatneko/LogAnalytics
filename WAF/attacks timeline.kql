@@ -1,0 +1,7 @@
+AzureDiagnostics
+| where ResourceType == "APPLICATIONGATEWAYS" 
+| where Category == "ApplicationGatewayFirewallLog" 
+| where Message contains "attack" //and action_s != "Blocked" 
+| sort by TimeGenerated desc
+| summarize count() by bin(TimeGenerated, 30min)
+| render timechart 
