@@ -1,6 +1,6 @@
 search in (AzureDiagnostics) ResourceType == "APPLICATIONGATEWAYS" 
 | sort by TimeGenerated desc
 | where Category == "ApplicationGatewayFirewallLog" 
-| summarize count(Message) by Message 
+| summarize count(Message) by Message, hostname_s
 | top 20 by count_Message
 | render barchart 
